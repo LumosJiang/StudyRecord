@@ -101,6 +101,10 @@ Mamba具有Transformer的内容感知学习功能,同时能够根据输入长度
 
 通过连接SSM和注意力,Mamba-2引入的SSD框架(Dao和Gu,2024)允许我们为Transformer和Mamba开发共享的词汇和技术库。
 
+#### 1.1.2 [A Survey on Visual Mamba](https://arxiv.org/abs/2404.15956)
+
+#### 1.1.3 [Visual Mamba: A Survey and New Outlooks](https://arxiv.org/abs/2404.18861)
+
 ### 1.2 dehazing
 
 ## 2 conference paper
