@@ -24,7 +24,7 @@ paper哪个地方最work的，怎么发现这个方法的
 
 #### 1.1.1 [A Survey of Mamba](https://arxiv.org/abs/2408.01129)
 
-##### 挑战
+##### 1.1.1.1 挑战
 
 **Transformer**
 ① Transformer仍然面临着固有的局限性,尤其是注意力计算的二次计算复杂性导致推断过程非常耗时。
@@ -48,7 +48,7 @@ paper哪个地方最work的，怎么发现这个方法的
 **Mamba**
 曼巴架构仍然面临一些挑战,例如内存损耗、对不同任务的泛化以及与基于Transformer的语言模型相比,捕捉复杂模式的能力较差。
 
-##### 主要贡献
+##### 1.1.1.2 主要贡献
 
 ① 基于Mamba的模型的进展
 ② 使Mamba适应不同数据的技术
@@ -56,7 +56,7 @@ paper哪个地方最work的，怎么发现这个方法的
 
 具体来说,我们首先回顾了各种代表性深度学习模型的基础知识以及Mamba-1和Mamba-2的细节作为前期工作。然后,为了展示Mamba对人工智能的重要性,我们全面回顾了相关研究,重点关注Mamba模型的架构设计、数据适应性和应用。最后,我们讨论了当前的局限性,并探讨了各种有前途的研究方向,为未来的研究提供更深入的见解。
 
-##### 知识点
+##### 1.1.1.3 知识点
 
 **RNN**
 ① RNN是非线性循环模型,通过利用隐藏状态中存储的历史知识来有效地捕捉时间模式。
@@ -87,7 +87,7 @@ Mamba 中时变选择机制的结构与 Transformer 中的注意力机制类似,
 并行关联扫描将模型训练的计算复杂度从$𝐎(𝑁^2𝑑)$降低到$𝐎(𝑁/𝑡)$。从本质上讲,扫描的核心是在给定的输入上构建一个平衡的二叉树,并从根开始遍历。换句话说,并行关联扫描首先从叶子到根遍历(即向上扫描),在树的内部节点创建部分和。然后,它反转遍历,从根向上移动,使用部分和构建整个扫描(即向下扫描)。
 另一方面,Mamba利用传统的重计算方法来减少训练选择性SSM层所需的总体内存.
 
-##### Mamba改进
+##### 1.1.1.4 Mamba改进
 
 ① 块设计：整合、替换、修改
 ② 扫描模式:
@@ -95,13 +95,19 @@ Mamba 中时变选择机制的结构与 Transformer 中的注意力机制类似,
 立体扫描-Hierarchical Scan, Spatiotemporal Scan, and Hybrid Scan.
 ③ 内存管理：存储器初始化、压缩和连接。
 
-##### 机遇
+##### 1.1.1.5 机遇
 
 Mamba具有Transformer的内容感知学习功能,同时能够根据输入长度线性扩展计算量,从而有效地捕捉长距离依赖关系,提高训练和推理的效率。
 
 通过连接SSM和注意力,Mamba-2引入的SSD框架(Dao和Gu,2024)允许我们为Transformer和Mamba开发共享的词汇和技术库。
 
-#### 1.1.2 [A Survey on Visual Mamba](https://arxiv.org/abs/2404.15956)
+#### 1.1.2 [A Survey on Visual Mamba](https://arxiv.org/abs/2404.15956)  CVPR2024
+
+##### 1.1.2.2 主要贡献
+
+① 这篇调查论文首次对视觉领域的Mamba技术进行了全面回顾，并明确侧重于分析提出的策略。
+② 在基于Naive的Mamba视觉框架的基础上，我们研究了如何增强Mamba的功能并将其与其他架构相结合以实现卓越的性能。
+③ 我们根据各种应用任务对文献进行了整理，从而进行了深入的探索。我们建立了分类法，确定了每种任务特有的进展，并提供了克服挑战的见解。
 
 #### 1.1.3 [Visual Mamba: A Survey and New Outlooks](https://arxiv.org/abs/2404.18861)
 
@@ -109,7 +115,7 @@ Mamba具有Transformer的内容感知学习功能,同时能够根据输入长度
 
 ## 2 conference paper
 
-### 2.1 Mamba/visionRWKv
+### 2.1 Mamba/visionRWKV
 
 #### 2.1.1 [Vision-RWKV: Efficient and Scalable Visual Perception with RWKV-Like Architectures](https://arxiv.org/abs/2403.02308)
 
