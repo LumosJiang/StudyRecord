@@ -101,13 +101,35 @@ Mamba具有Transformer的内容感知学习功能,同时能够根据输入长度
 
 通过连接SSM和注意力,Mamba-2引入的SSD框架(Dao和Gu,2024)允许我们为Transformer和Mamba开发共享的词汇和技术库。
 
-#### 1.1.2 [A Survey on Visual Mamba](https://arxiv.org/abs/2404.15956)  CVPR2024
+#### 1.1.2 [A Survey on Visual Mamba](https://arxiv.org/abs/2404.15956)  CVPR
 
-##### 1.1.2.2 主要贡献
+##### 1.1.2.1 主要贡献
 
 ① 这篇调查论文首次对视觉领域的Mamba技术进行了全面回顾，并明确侧重于分析提出的策略。
 ② 在基于Naive的Mamba视觉框架的基础上，我们研究了如何增强Mamba的功能并将其与其他架构相结合以实现卓越的性能。
 ③ 我们根据各种应用任务对文献进行了整理，从而进行了深入的探索。我们建立了分类法，确定了每种任务特有的进展，并提供了克服挑战的见解。
+
+##### 1.1.2.2 Mamba优势
+
+RNN和LSTM在处理渐进梯度和长程依赖性时存在困难，而Mamba则能提供高效的计算和内存利用率。
+
+##### 1.1.2.3 Mamba相关
+
+① Pure mamba:
+ [Vision Mamba](https://arxiv.org/abs/2401.09417)-Vim-based, [LocalMamba](https://arxiv.org/abs/2403.09338)-Vim-based, [VMamba](https://arxiv.org/abs/2401.10166)-VSS-based, [PlainMamba](https://arxiv.org/abs/2403.17695)-VSS-based.
+
+##### 1.1.2.4 扫描方向总结
+
+BiDirectional Scan 双向扫描 [26]
+Cross-Scan 交叉扫描[27]
+Continuous 2D Scanning 连续2D扫描 [29]
+Local Scan 局部扫描 [28]
+Efficient 2D Scanning (ES2D) 高效二维扫描 [30]
+Omnidirectional Selective Scan 全向选择性扫描 [35]
+3D BiDirectional Scan 3D双向扫描 [36]
+Hierarchical Scan 分层扫描 [37]
+Spatiotemporal Selective Scan 时空选择性扫描 [38]
+Multi-Path Scan 多路径扫描 [39]
 
 #### 1.1.3 [Visual Mamba: A Survey and New Outlooks](https://arxiv.org/abs/2404.18861)
 
