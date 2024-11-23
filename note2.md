@@ -133,6 +133,43 @@ Multi-Path Scan 多路径扫描 [39]
 
 #### 1.1.3 [Visual Mamba: A Survey and New Outlooks](https://arxiv.org/abs/2404.18861)
 
+CNN:局部感受野，限制空间上下文捕捉
+ViT:补丁二次计算成本高
+Mamba：线性计算成本、类似于Transformer的建模能力
+
+##### 1.1.3.1 公式
+
+连续化 经典状态空间模型
+  $$\begin{equation}h'(t) = Ah(t)+Bx(t), y(t) = Ch(t)     \end{equation}      $$
+在将$𝐀,𝐁$离散化为$\bar𝐀$,$\bar𝐁$ 之后，方程（1）可以重新表述为
+   $$\begin{equation}h_t = \bar Ah_{t-1}+\bar     Bx_t, y_t = Ch_t     \end{equation}      $$
+重新表述，计算为卷积
+$$ \begin{equation}
+  \bar K = (\bar C \bar B, C\bar A \bar B,...,\bar C \bar A^{L-1} \bar B), y=x* \bar K
+\end{equation}$$
+𝐿表示输入序列𝒙的长度， ∗代表卷积操作。向量 $\bar𝐊$∈ℝ。 𝐿是SSM 卷积核，能够实现序列输出的同时合成。给定 $\bar𝐊$，方程（3）中的卷积操作可以使用快速傅里叶变换（FFT）高效计算。
+
+SSM 中的参数由公式（1）、公式（2）、公式（3）指示，与输入或时间动态无关。
+
+##### 1.1.3.2 扫描
+扫描方向
+扫描轴线
+扫描连续性
+扫描采样
+①扫描方向（单向、双向...）：解决视觉序列的非因果特性。
+②扫描轴线（水平、垂直、左对角、右对角、深度（3维）、超越空间轴（沿着通道））：处理视觉数据固有的高维性。
+③扫描连续性（之字形、希尔伯特扫描、重新排序扫描...）：考虑扫描路径上补丁的空间连续性。
+④扫描采样（本地采样、多尺度采样...）：将完整图像划分为子图像以捕捉空间信息。
+##### 1.1.3.3 Tokenization
+二维图像通过茎模块转换为视觉标记序列。向视觉标记添加位置嵌入（optional）
+一维or二维
+
+##### 1.1.3.4 应用
+有图像重建
+
+####  Table 3：Comparison of different backbones on ImageNet-1K [23] classification
+
+##### 1.1.3.4 扫描技术
 ### 1.2 dehazing
 
 ## 2 conference paper
@@ -141,4 +178,20 @@ Multi-Path Scan 多路径扫描 [39]
 
 #### 2.1.1 [Vision-RWKV: Efficient and Scalable Visual Perception with RWKV-Like Architectures](https://arxiv.org/abs/2403.02308)
 
+#### 2.1.2 [Vision Mamba: Efficient Visual Representation Learning with Bidirectional State Space Model](https://arxiv.org/abs/2401.09417)(ICML2024 accept)
+早期纯Mamba
+#### 2.1.3 [VMamba: Visual State Space Model](https://arxiv.org/abs/2401.10166)(NeurIPS2024 spotlight)
+早期纯Mamba
+#### 2.1.4 [Multi-Scale VMamba: Hierarchy in Hierarchy Visual State Space Model](https://arxiv.org/abs/2405.14174)(NeurIPS 2024)
+每个模块中引入卷积前馈网络，以增强通道间信息交换和局部特征提取。
+
+#### 2.1.5[U-shaped Vision Mamba for Single Image Dehazing](https://arxiv.org/abs/2402.04139)
+Mamba去雾
+
+#### 2.1.5[RSDehamba: Lightweight Vision Mamba for Remote Sensing Satellite Image Dehazing](https://arxiv.org/abs/2405.10030)
+Mamba去雾
+
+#### 2.1.6[MambaIR: A Simple Baseline for Image Restoration with State-Space Model](https://arxiv.org/abs/2402.15648)(ECCV2024)
+Mamba超分辨率
+#### 2.1.7[Activating Wider Areas in Image Super-Resolution](https://arxiv.org/abs/2403.08330)
 ### 2.2 dehazing
