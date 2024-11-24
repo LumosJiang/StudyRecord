@@ -171,20 +171,44 @@ SSM 中的参数由公式（1）、公式（2）、公式（3）指示，与输�
 
 Mamba架构在扩展到大型网络配置时面临稳定性问题
 自回归预训练策略处于萌芽阶段
-Mamba 可以选择性地忽略不相关的信息，随着上下文长度的增加而产生一致的性能改进。 
+Mamba 可以选择性地忽略不相关的信息，随着上下文长度的增加而产生一致的性能改进。
 Mamba 架构的效率和功效为数据可扩展性带来了巨大的机会。
 Mamba 模型在不依赖大规模数据集的情况下具有实现最佳性能的巨大潜力。这为开发小型但有效的基于 Mamba 的模型提供了机会。
 ####  Table 3：Comparison of different backbones on ImageNet-1K [23] classification
 
-##### 1.1.3.4 扫描技术
 ### 1.2 dehazing
 
 ## 2 conference paper
 
 ### 2.1 Mamba/visionRWKV
 
-#### 2.1.1 [Vision-RWKV: Efficient and Scalable Visual Perception with RWKV-Like Architectures](https://arxiv.org/abs/2403.02308)
+#### 2.1.1 [Vision-RWKV: Efficient and Scalable Visual Perception with RWKV-Like Architectures](https://arxiv.org/abs/2403.02308)(OpenGVLab)
+与 ViT 相关的二次计算复杂性限制了它们有效处理高分辨率图像和冗长序列的能力
 
+
+##### 2.1.1.1 主要贡献
+(1)我们提出VRWKV作为ViT的低成本替代方案，以更低的计算成本实现全面替代。我们的模型不仅保留了 ViT 的优点，包括捕获远程依赖关系的能力和处理稀疏输入的灵活性，而且还将复杂性降低到线性水平。
+
+(2)为了适应视觉任务，我们引入了双向全局注意力和一种称为 Q-Shift 的新颖令牌移位方法，从而实现了全局注意力的线性复杂性。
+
+(3)我们的模型超越了基于窗口的 ViT，并且与全局注意力 ViT 相当，随着分辨率的提高，展示了更低的 FLOP 和更快的处理速度。
+
+##### 2.1.1.2 相关工作
+窗口注意力[ 30,51,6 ]将自注意力计算限制在局部窗口内，大大降低了计算复杂度，同时通过窗口级交互保留了感受野。
+
+##### 2.1.1.3 整体架构
+在原来的RWKV基础上修改
+① 原来的因果注意力转变为双向全局注意力。
+② 相对偏差：我们计算时间差的绝对值 𝑡−𝑖 并将其除以token总数（表示为𝑇）来表示不同尺寸图像中标记的相对偏差。
+③ 灵活的衰减：我们不再限制可学习的衰减参数𝑤在指数项中为正，允许指数衰减注意力集中在tokens在不同通道中远离当前的token上。
+
+Q-Shift
+然而，一维衰减与二维图像中的相邻关系并不相符。因此，我们在每个空间混合和通道混合模块的第一步中引入了四向令牌移位（Q-Shift）。
+Q-Shift 操作允许所有标记与其相邻标记进行移位和线性插值
+
+有界指数：随着输入分辨率的增加，指数衰减和增长都很快超出浮点数的范围。因此，我们将指数项除以token数量，使最大衰减和增长受到限制。
+当模型变深时，我们在注意力机制和Squared ReLU操作之后直接添加层归一化[ 2 ]，以防止模型的输出溢出。
+这两项修改可以稳定地缩放输入分辨率和模型深度，从而允许大型模型稳定地训练和收敛。
 #### 2.1.2 [Vision Mamba: Efficient Visual Representation Learning with Bidirectional State Space Model](https://arxiv.org/abs/2401.09417)(ICML2024 accept)
 早期纯Mamba
 #### 2.1.3 [VMamba: Visual State Space Model](https://arxiv.org/abs/2401.10166)(NeurIPS2024 spotlight)
