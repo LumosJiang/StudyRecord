@@ -185,7 +185,6 @@ Mamba 模型在不依赖大规模数据集的情况下具有实现最佳性能�
 #### 2.1.1 [Vision-RWKV: Efficient and Scalable Visual Perception with RWKV-Like Architectures](https://arxiv.org/abs/2403.02308)(OpenGVLab)
 与 ViT 相关的二次计算复杂性限制了它们有效处理高分辨率图像和冗长序列的能力
 
-
 ##### 2.1.1.1 主要贡献
 (1)我们提出VRWKV作为ViT的低成本替代方案，以更低的计算成本实现全面替代。我们的模型不仅保留了 ViT 的优点，包括捕获远程依赖关系的能力和处理稀疏输入的灵活性，而且还将复杂性降低到线性水平。
 
@@ -210,9 +209,27 @@ Q-Shift 操作允许所有标记与其相邻标记进行移位和线性插值
 当模型变深时，我们在注意力机制和Squared ReLU操作之后直接添加层归一化[ 2 ]，以防止模型的输出溢出。
 这两项修改可以稳定地缩放输入分辨率和模型深度，从而允许大型模型稳定地训练和收敛。
 #### 2.1.2 [Vision Mamba: Efficient Visual Representation Learning with Bidirectional State Space Model](https://arxiv.org/abs/2401.09417)(ICML2024 accept)
-早期纯Mamba
+早期纯Mamba backbone
+在本文中，我们证明了视觉表示学习中对自注意力的依赖是不必要的，并提出了一种具有双向 Mamba 块的新通用视觉主干 (Vim)。
+它用位置嵌入来标记图像序列，并用双向状态空间模型压缩视觉表示。
+我们构建了一个基于纯 SSM 的模型，可以将其用作通用视觉主干。
+相比VMamba，Vim 主要专注于视觉序列学习，并拥有多模态数据的统一表示。
+##### 2.1.2.1 主要贡献
+① 我们提出Vision Mamba (Vim)，它结合了用于数据依赖的全局视觉上下文建模的双向SSM 和用于位置感知视觉理解的位置嵌入。
+② 无需注意力机制，所提出的Vim 具有与ViT 相同的建模能力，但仅具有次二次方时间计算和线性内存复杂度。
+具体来说，Vim在执行批量推理以提取 1248x1248 分辨率图像特征时比DeiT快2.8倍，并节省 86.8% GPU 内存。
+③ 我们对ImageNet 分类和密集预测下游任务进行了广泛的实验。结果表明，与成熟且高度优化的普通视觉 Transformer（即 DeiT）相比，Vim 实现了卓越的性能。
+##### 2.1.2.2 实验
+① 图像分类
+ImageNet-1K 
+  Vim-Small top-1准确率 80.3 比 ResNet50 高 4.1 个百分点。
+  多项好于DeiT
+
+##### 2.1.2.3 总结
+Vim 以序列建模方式学习视觉表示，并且不会引入特定于图像的归纳偏差。得益于所提出的双向状态空间建模，Vim 实现了数据依赖的全局视觉上下文，并享有与 Transformer 相同的建模能力，同时具有较低的计算复杂度。受益于 Mamba 的硬件感知设计，Vim 在处理高分辨率图像时，推理速度和内存占用明显优于 ViT。标准计算机视觉基准上的实验结果验证了 Vim 的建模能力和高效率，表明 Vim 具有成为下一代视觉骨干的巨大潜力。
 #### 2.1.3 [VMamba: Visual State Space Model](https://arxiv.org/abs/2401.10166)(NeurIPS2024 spotlight)
 早期纯Mamba
+通过将 Mamba 与多向扫描和分层网络架构相结合，在视觉识别方面展示了令人印象深刻的结果。
 #### 2.1.4 [Multi-Scale VMamba: Hierarchy in Hierarchy Visual State Space Model](https://arxiv.org/abs/2405.14174)(NeurIPS 2024)
 每个模块中引入卷积前馈网络，以增强通道间信息交换和局部特征提取。
 
